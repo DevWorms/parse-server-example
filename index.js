@@ -19,6 +19,18 @@ var api = new ParseServer({
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+  },
+  push: {
+    android: {
+      senderId: '981271162762',
+      apiKey: 'AIzaSyCBvHOcmmdlWY3ozaBC6oREMqDY6OxkhIA'
+    },
+    ios: {
+      pfx: 'certificado.p12',
+      passphrase: '', // optional password to your p12/PFX
+      bundleId: 'com.devworms.cocinamexicana',
+      production: true
+    }
   }
   
 });
