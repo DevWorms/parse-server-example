@@ -26,10 +26,12 @@ var api = new ParseServer({
       apiKey: 'AIzaSyCBvHOcmmdlWY3ozaBC6oREMqDY6OxkhIA'
     },
     ios: {
-      pfx: 'certificado.p12',
+      //pfx: 'certificado.p12',
+      pfx: 'CertificadoD.p12',
       passphrase: '', // optional password to your p12/PFX
       bundleId: 'com.devworms.cocinamexicana',
-      production: true
+      //production: true 
+      production: false
     }
   }
   
