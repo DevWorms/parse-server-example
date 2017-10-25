@@ -33,7 +33,26 @@ var api = new ParseServer({
       production: true 
       //production: false
     }
-  }
+  },
+  emailAdapter: {
+módulo: 'parse-server-simple-mailgun-adapter', 
+opciones: { 
+fromAddress: process.env.EMAIL_FROM || "email-from @ example.com ", 
+dominio: process.env.MAILGUN_DOMAIN || " example.com ", 
+apiKey: process.env.MAILGUN_API_KEY || "API-Key", 
+// Verificación de 
+verificación del 
+asunto del correo electrónico Subject: 'Verifique su correo electrónico para% appname%', // verificación Verificación del cuerpo del correo electrónicoCuerpo 
+: 'Hola, \ n \ nSe le está pidiendo que confirme la dirección de correo electrónico % email% con% appname% \ n \ nHaga clic aquí para confirmarlo: \ n% link% ',
+
+// Password reset email subject 
+contraseñaResetSubject: 'Solicitud de restablecimiento de contraseña para% appname%', 
+// contraseña restablecer cuerpo de correo electrónico 
+contraseñaResetBody: 'Hola, \ n \ nRequería restablecimiento de contraseña para% appname%. \ N \ nHaga clic aquí para restablecerlo : \ n% link% ', 
+// OPTIONAL (enviará la versión HTML del correo electrónico): 
+passwordResetBodyHTML: "<! - DOCTYPE html> ........" 
+} 
+} 
   
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
