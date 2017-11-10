@@ -12,6 +12,25 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
+
+    ...otherOptions,
+  // Enable email verification
+  verifyUserEmails: true,
+
+  // if `verifyUserEmails` is `true` and
+  //     if `emailVerifyTokenValidityDuration` is `undefined` then
+  //        email verify token never expires
+  //     else
+  //        email verify token expires after `emailVerifyTokenValidityDuration`
+  //
+  // `emailVerifyTokenValidityDuration` defaults to `undefined`
+  //
+  // email verify token below expires in 2 hours (= 2 * 60 * 60 == 7200 seconds)
+  emailVerifyTokenValidityDuration: 2 * 60 * 60, // in seconds (2 hours = 7200 seconds)
+
+  // set preventLoginWithUnverifiedEmail to false to allow user to login without verifying their email
+  // set preventLoginWithUnverifiedEmail to true to prevent user from login if their email is not verified
+  preventLoginWithUnverifiedEmail: false, // defaults to false
   
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
@@ -35,8 +54,7 @@ var api = new ParseServer({
       //production: false
     }
   },
-  verifyUsersEmails: true,
-  emailAdapter: {
+emailAdapter: {
  module: 'parse-server-simple-mailgun-adapter',
  options: {
  fromAddress: process.env.EMAIL_FROM || "jaime@devolada.com",
