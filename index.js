@@ -56,7 +56,7 @@ var api = new ParseServer({
  }
 
  }
- verifyUsersEmails: true
+ 
   
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
