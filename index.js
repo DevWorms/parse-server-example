@@ -12,8 +12,6 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-
-  
   
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
@@ -37,8 +35,8 @@ var api = new ParseServer({
       //production: false
     }
   },
-  verifyUsersEmails: true,
-  emailAdapter: {
+  
+ emailAdapter: {
  module: 'parse-server-simple-mailgun-adapter',
  options: {
  fromAddress: process.env.EMAIL_FROM || "jaime@devolada.com",
@@ -56,6 +54,7 @@ var api = new ParseServer({
  //OPTIONAL (will send HTML version of email):
  passwordResetBodyHTML: "<!--DOCTYPE html>........"
  }
+ verifyUsersEmails: true
  }
   
 });
