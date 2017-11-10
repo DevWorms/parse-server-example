@@ -15,7 +15,7 @@ var api = new ParseServer({
 
     ...otherOptions,
   // Enable email verification
-  verifyUserEmails: true,
+  verifyUsersEmails: true,
 
   // if `verifyUserEmails` is `true` and
   //     if `emailVerifyTokenValidityDuration` is `undefined` then
