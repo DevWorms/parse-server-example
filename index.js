@@ -38,7 +38,7 @@ var api = new ParseServer({
  module: 'parse-server-simple-mailgun-adapter',
  options: {
  fromAddress: process.env.EMAIL_FROM || "jaime@devolada.com",
- domain: process.env.MAILGUN_DOMAIN || "cocinamexicana.com",
+ domain: process.env.MAILGUN_DOMAIN || "devolada.com",
  apiKey: process.env.MAILGUN_API_KEY || "key-938599f888f6225510f33735fb41557c",
  // Verification email subject
  verificationSubject: 'Please verify your e-mail for %appname%',
