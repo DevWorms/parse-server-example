@@ -19,8 +19,7 @@ var api = ParseServer({
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse/',  // Don't forget to change to https if needed
-  verifyUserEmails: process.env.VERIFY_USER_EMAIL || true,
+  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   },
@@ -38,7 +37,7 @@ var api = ParseServer({
       //production: false
     }
   },
- verifyUserEmails: true, 
+ verifyUsersEmails: true, 
   emailAdapter: new SimpleMailgunAdapter({
     apiKey: 'key-938599f888f6225510f33735fb41557c',
     domain: 'devolada.com',
