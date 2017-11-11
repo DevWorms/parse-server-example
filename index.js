@@ -16,12 +16,34 @@ var api = ParseServer({
   
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
+  appId: process.env.APP_ID || 'myAppId', //REVISAR
+  masterKey: process.env.MASTER_KEY || '', //REVISAR
+  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  //REVISAR
+  verifyUserEmails: true,
+  appName: 'Recetas Mexicanas',
+  emailAdapter: {
+     module: 'parse-server-simple-mailgun-adapter',
+     options: {
+       fromAddress: process.env.EMAIL_FROM || "jaime@devolada.com",
+       domain: process.env.MAILGUN_DOMAIN || "devolada.com",
+       apiKey: process.env.MAILGUN_API_KEY || "key-938599f888f6225510f33735fb41557c",
+       // Verification email subject
+       verificationSubject: 'Please verify your e-mail for %appname%',
+       // Verification email body
+       verificationBody: 'Hi,\n\nYou are being asked to confirm the e-mail address %email% with %appname%\n\nClick here to confirm it:\n%link%',
+
+      // Password reset email subject
+       passwordResetSubject: 'Password Reset Request for %appname%',
+       // Password reset email body
+       passwordResetBody: 'Hi,\n\nYou requested a password reset for %appname%.\n\nClick here to reset it:\n%link%',
+       //OPTIONAL (will send HTML version of email):
+       passwordResetBodyHTML: "<!--DOCTYPE html>........"
+     }
+   }
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   },
+
   push: {
     android: {
       senderId: '981271162762',
@@ -36,28 +58,8 @@ var api = ParseServer({
       //production: false
     }
   },
- 
- emailAdapter: {
-   module: 'parse-server-simple-mailgun-adapter',
-   options: {
-     fromAddress: process.env.EMAIL_FROM || "jaime@devolada.com",
-     domain: process.env.MAILGUN_DOMAIN || "devolada.com",
-     apiKey: process.env.MAILGUN_API_KEY || "key-938599f888f6225510f33735fb41557c",
-     // Verification email subject
-     verificationSubject: 'Please verify your e-mail for %appname%',
-     // Verification email body
-     verificationBody: 'Hi,\n\nYou are being asked to confirm the e-mail address %email% with %appname%\n\nClick here to confirm it:\n%link%',
-
-    // Password reset email subject
-     passwordResetSubject: 'Password Reset Request for %appname%',
-     // Password reset email body
-     passwordResetBody: 'Hi,\n\nYou requested a password reset for %appname%.\n\nClick here to reset it:\n%link%',
-     //OPTIONAL (will send HTML version of email):
-     passwordResetBodyHTML: "<!--DOCTYPE html>........"
-   }
- }
-
-
+  
+  publicServerURL: 'https://myurl.com/myapp'
   
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
