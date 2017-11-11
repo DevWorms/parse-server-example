@@ -37,7 +37,6 @@ var api = ParseServer({
       //production: false
     }
   },
- verifyUsersEmails: true, 
   emailAdapter: new SimpleMailgunAdapter({
     apiKey: 'key-938599f888f6225510f33735fb41557c',
     domain: 'devolada.com',
