@@ -37,7 +37,7 @@ var api = ParseServer({
       //production: false
     }
   },
- verifyUserEmails: true,
+ verifyUsersEmails: true,
  emailAdapter: {
  module: 'parse-server-simple-mailgun-adapter',
  options: {
