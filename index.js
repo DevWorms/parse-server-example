@@ -4,6 +4,8 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var SimpleMailgunAdapter = require('parse-server/lib/Adapters/Email/SimpleMailgunAdapter');
+
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -36,26 +38,13 @@ var api = ParseServer({
       //production: false
     }
   },
- 
- emailAdapter: {
- module: 'parse-server-simple-mailgun-adapter',
- options: {
- fromAddress: process.env.EMAIL_FROM || "jaime@devolada.com",
- domain: process.env.MAILGUN_DOMAIN || "devolada.com",
- apiKey: process.env.MAILGUN_API_KEY || "key-938599f888f6225510f33735fb41557c",
- // Verification email subject
- verificationSubject: 'Please verify your e-mail for %appname%',
- // Verification email body
- verificationBody: 'Hi,\n\nYou are being asked to confirm the e-mail address %email% with %appname%\n\nClick here to confirm it:\n%link%',
+ verifyUserEmails: true, 
+  emailAdapter: new SimpleMailgunAdapter({
+    apiKey: 'key-938599f888f6225510f33735fb41557c',
+    domain: 'devolada.com',
+    fromAddress: 'jaime@devolada.com'
+  })
 
-// Password reset email subject
- passwordResetSubject: 'Password Reset Request for %appname%',
- // Password reset email body
- passwordResetBody: 'Hi,\n\nYou requested a password reset for %appname%.\n\nClick here to reset it:\n%link%',
- //OPTIONAL (will send HTML version of email):
- passwordResetBodyHTML: "<!--DOCTYPE html>........"
- }
- }
 
 
   
